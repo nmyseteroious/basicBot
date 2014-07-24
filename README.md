@@ -35,20 +35,10 @@ I would like to thank the following people:
 Copyright
 ---------
 
-Copyright &copy; 2014
+Copyright &copy; 2014 Mathieu Samaey
  
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/.
+Modifications (including forks) of the code to fit personal needs are allowed only for personal use and should refer back to the original source.
+This software is not for profit, any extension, or unauthorised person providing this software is not authorised to be in a position of any monetary gain from this use of this software. Any and all money gained under the use of the software (which includes donations) must be passed on to the original author.
 
 
 Disclaimer
