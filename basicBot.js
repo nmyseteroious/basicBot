@@ -75,10 +75,10 @@ var retrieveFromStorage = function(){
 };
 
 var esBot = {
-        version: "1.1.5",        
+        version: "1.1.6",        
         status: false,
         name: "basicBot",
-        creator: "EuclideanSpace",
+        creator: "Matthew",
         loggedInID: null,
         scriptLink: "https://raw.githubusercontent.com/Yemasthui/basicBot/master/basicBot.js",
         cmdLink: "http://git.io/245Ppg",
@@ -793,6 +793,7 @@ var esBot = {
                     case '!eta':                esBot.commands.etaCommand.functionality(chat, '!eta');                              executed = true; break;
                     case '!fb':                 esBot.commands.fbCommand.functionality(chat, '!fb');                                executed = true; break;
                     case '!filter':             esBot.commands.filterCommand.functionality(chat, '!filter');                        executed = true; break;
+                    case '!help':               esBot.commands.helpCommand.functionality(chat, '!help');                            executed = true; break;
                     case '!join':               esBot.commands.joinCommand.functionality(chat, '!join');                            executed = true; break;
                     case '!jointime':           esBot.commands.jointimeCommand.functionality(chat, '!jointime');                    executed = true; break;
                     case '!kick':               esBot.commands.kickCommand.functionality(chat, '!kick');                            executed = true; break;
@@ -1537,6 +1538,18 @@ var esBot = {
                                         return API.sendChat('/me [@' + chat.from + '] chatfilter enabled.');
                                     } 
                                 
+                                };                              
+                        },
+                },
+
+                helpCommand: {
+                        rank: 'user',
+                        type: 'exact',
+                        functionality: function(chat, cmd){
+                                if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                                if( !esBot.commands.executable(this.rank, chat) ) return void (0);
+                                else{
+                                    API.sendChat("/me This image will get you started on plug: http://i.imgur.com/SBAso1N.jpg");
                                 };                              
                         },
                 },
