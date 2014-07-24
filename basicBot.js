@@ -75,7 +75,7 @@ var retrieveFromStorage = function(){
 };
 
 var esBot = {
-        version: "1.1.7",        
+        version: "1.1.8",        
         status: false,
         name: "basicBot",
         creator: "Matthew",
@@ -738,6 +738,12 @@ var esBot = {
                 }                    
                 if(msg.indexOf('autojoin was not enabled') > 0 || msg.indexOf('AFK message was not enabled') > 0 || msg.indexOf('!afkdisable') > 0 || msg.indexOf('!joindisable') > 0 || msg.indexOf('autojoin disabled') > 0 || msg.indexOf('AFK message disabled') > 0){ 
                     API.moderateDeleteChat(chat.chatID);
+                    return true;
+                }
+                if(msg.indexOf("joined the roulette") > -1 && chat.fromID === esBot.loggedInID){
+                    setTimeout(function(id){
+                        API.moderateDeleteChat(id);
+                    }, 2*1000, chat.chatID);
                     return true;
                 }                       
             return false;                        
