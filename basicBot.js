@@ -75,12 +75,12 @@ var retrieveFromStorage = function(){
 };
 
 var esBot = {
-        version: "1.1.6",        
+        version: "1.1.7",        
         status: false,
         name: "basicBot",
         creator: "Matthew",
         loggedInID: null,
-        scriptLink: "https://raw.githubusercontent.com/Yemasthui/basicBot/master/basicBot.js",
+        scriptLink: "https://rawgit.com/Yemasthui/basicBot/master/basicBot.js",
         cmdLink: "http://git.io/245Ppg",
         roomSettings: {
             maximumAfk: 120,
