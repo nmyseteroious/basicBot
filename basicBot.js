@@ -75,7 +75,7 @@ var retrieveFromStorage = function(){
 };
 
 var esBot = {
-        version: "1.1.9",        
+        version: "1.2.0",        
         status: false,
         name: "basicBot",
         creator: "Matthew",
@@ -825,7 +825,8 @@ var esBot = {
                     case '!roulette':           esBot.commands.rouletteCommand.functionality(chat, '!roulette');                    executed = true; break;
                     case '!rules':              esBot.commands.rulesCommand.functionality(chat, '!rules');                          executed = true; break;
                     case '!sessionstats':       esBot.commands.sessionstatsCommand.functionality(chat, '!sessionstats');            executed = true; break;
-                    case '!skip':               esBot.commands.skipCommand.functionality(chat, '!skip');                            executed = true; break;
+                    case '!skip':               esBot.commands.skipCommand.functionality(chat, '!skip');
+                    case '!slap': esBot.commands.slapCommand.functionality(chat, '!slap'); executed = true; break;                            executed = true; break;
                     case '!status':             esBot.commands.statusCommand.functionality(chat, '!status');                        executed = true; break;
                     case '!swap':               esBot.commands.swapCommand.functionality(chat, '!swap');                            executed = true; break;
                     case '!theme':              esBot.commands.themeCommand.functionality(chat, '!theme');                          executed = true; break;
@@ -2149,6 +2150,53 @@ var esBot = {
                                     API.moderateForceSkip();
                                     esBot.room.skippable = false;
                                     setTimeout(function(){ esBot.room.skippable = true}, 5*1000);
+                                
+                                };                              
+                        },
+                },
+
+                slapCommand: {
+                        rank: 'user',
+                        type: 'startsWith',
+
+                        slaps: ['slaps you with a tuna!',
+                                   'doubleslaps you!',
+                                   'tries to slap you but it fails!',
+                                   'http://fc04.deviantart.net/fs70/f/2013/135/d/b/fish_slap_2_by_ibiscorosa-d65djgt.jpg',
+                                   'misses and slaps him/herself!',
+                                   "http://38.media.tumblr.com/tumblr_m6fujeUz621rwcc6bo1_250.gif",
+                                   'http://38.media.tumblr.com/dcbf788176715156472764c7723f21ae/tumblr_n5ixbxSar81rfduvxo1_500.gif'
+                            ],
+
+                        getSlap: function() {
+                            var c = Math.floor(Math.random() * this.slaps.length);
+                            return this.slaps[c];
+                        },
+
+                        functionality: function(chat, cmd){
+                                if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                                if( !esBot.commands.executable(this.rank, chat) ) return void (0);
+                                else{
+                                    var msg = chat.message;
+      
+                                    var space = msg.indexOf(' ');
+                                    if(space === -1){ 
+                                        API.sendChat('/em But who?!');
+                                        return false;
+                                    }
+                                    else{
+                                        var name = msg.substring(space + 2);
+                                        var user = esBot.userUtilities.lookupUserName(name);
+                                        if (user === false || !user.inRoom) {
+                                          return API.sendChat("/em doesn't see '" + name + "' in room and slaps the air.");
+                                        } 
+                                        else if(user.username === chat.from){
+                                            return API.sendChat("/me @" + name +  ", you want to get slapped? Ieuw, no kinky stuff please.");
+                                        }
+                                        else {
+                                            return API.sendChat("/me @" + user.username + ", @" + chat.from + ' ' + this.getSlap() );
+                                        }
+                                    }
                                 
                                 };                              
                         },
