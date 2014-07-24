@@ -75,7 +75,7 @@ var retrieveFromStorage = function(){
 };
 
 var esBot = {
-        version: "1.1.8",        
+        version: "1.1.9",        
         status: false,
         name: "basicBot",
         creator: "Matthew",
@@ -740,7 +740,7 @@ var esBot = {
                     API.moderateDeleteChat(chat.chatID);
                     return true;
                 }
-                if(msg.indexOf("joined the roulette") > -1 && chat.fromID === esBot.loggedInID){
+                if((msg.indexOf("joined the roulette") > -1 || msg.indexOf("left the roulette") > -1) && chat.fromID === esBot.loggedInID){
                     setTimeout(function(id){
                         API.moderateDeleteChat(id);
                     }, 2*1000, chat.chatID);
